@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>promises</title>
+</head>
+
+<body>
+  <h3 id="title1" style="visibility: hidden;">Title 1</h3>
+  <h3 id="title2" style="visibility: hidden;">Title 2</h3>
+  <h3 id="title3" style="visibility: hidden;">Title 3</h3>
+  <h3 id="title4" style="visibility: hidden;">Title 4</h3>
+</body>
+
+<script>
+  // setTimeout(function () {
+  //   document.getElementById("title1").style.visibility = "visible"
+  //   setTimeout(function () {
+  //     document.getElementById("title2").style.visibility = "visible"
+  //     setTimeout(function () {
+  //       document.getElementById("title3").style.visibility = "visible"
+  //       setTimeout(function () {
+  //         document.getElementById("title4").style.visibility = "visible"
+  //       }, 2000)
+  //     }, 2000)
+  //   }, 2000)
+  // }, 2000)
+
+  // let p = new Promise(function (resolve, reject) {
+  //   console.log("starting the async code")
+  //   // async code
+  //   setTimeout(function () {
+  //     document.getElementById("title1").style.visibility = "visible"
+  //     console.log("calling resolve")
+  //     resolve()
+  //   }, 2000)
+  //   // isSuccess = true
+  //   // if (isSuccess) {
+  //   //   console.log("calling resolve")
+  //   //   resolve()
+  //   // } else {
+  //   //   console.log("calling reject")
+  //   //   reject()
+  //   // }
+  // })
+
+  // console.log("after the primise creating and befor then and catch")
+
+  // p.then(function () {
+  //   console.log("calling then")
+  // }).catch(function () {
+  //   console.log("error")
+  // })
+
+  // console.log("after then and catch")
+
+  new Promise((resolve, reject) => {
+    // async
+    setTimeout(function () {
+      document.getElementById("title1").style.visibility = "visible"
+      resolve()
+    }, 2000)
+  }).then(() => {
+    return new Promise((resolve, reject) => {
+      // async
+      setTimeout(function () {
+        document.getElementById("title2").style.visibility = "visible"
+        resolve()
+      }, 1000)
+    })
+  }).then(() => {
+    return new Promise((resolve, reject) => {
+      // async
+      setTimeout(function () {
+        document.getElementById("title3").style.visibility = "visible"
+        resolve()
+      }, 4000)
+    })
+  }).then(() => {
+    return new Promise((resolve, reject) => {
+      // async
+      setTimeout(function () {
+        document.getElementById("title4").style.visibility = "visible"
+        resolve()
+      }, 1000)
+    })
+  })
+
+</script>
+
+</html>
